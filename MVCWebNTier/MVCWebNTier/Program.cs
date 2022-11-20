@@ -32,7 +32,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<MyFirstMVCAppContext>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<SchoolContext>();
 
     dbContext.Database.EnsureCreated();
 
