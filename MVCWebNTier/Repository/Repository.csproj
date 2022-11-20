@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MVCWebNTier.Data\MVCWebNTier.Data.csproj" />
+  </ItemGroup>
+
 </Project>
