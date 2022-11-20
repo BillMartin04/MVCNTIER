@@ -1,4 +1,5 @@
-﻿using MVCWebNTier.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MVCWebNTier.Data.Context;
 using MVCWebNTier.Models;
 using System;
 using System.Collections.Generic;
@@ -43,19 +44,6 @@ namespace Repository
         {
             return await _context.Schools.FindAsync(id);
         }
-
-        public int GetAge(string id)
-        {
-            var School = GetSchoolById(id);
-            throw new NotImplementedException();
-        }
-
-        public int GetAge(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-
 
         public async Task<IEnumerable<School>> GetAllSchools()
         {
