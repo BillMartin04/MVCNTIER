@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Service;
 
 namespace MVCWebNTier.Controllers
 {
-    public class Schools : Controller
+    public class SchoolContoller : Controller
     {
+        private readonly ISchoolService _schoolService;
 
-        // GET: Schools
-        public ActionResult Index()
+        public SchoolContoller(ISchoolService schoolService)
         {
-            return View();
+            _schoolService = schoolService;
+        }
+        // GET: Schools
+        public async Task<ActionResult> Index()
+        {    
+            return View(await _schoolService.GetAllSchools());
         }
 
         // GET: Schools/Details/5
