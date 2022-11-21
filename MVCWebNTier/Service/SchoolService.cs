@@ -17,7 +17,7 @@ namespace Service
             _schoolRepository = schoolRepository;
         }
 
-        public async Task<List<School>> AddSchool(School school)
+        public async Task<int> AddSchool(School school)
         {
             return await _schoolRepository.AddSchool(school);
         }
@@ -61,11 +61,6 @@ namespace Service
         public async Task<int> UpdateSchool(School school)
         {
             return await _schoolRepository.UpdateSchool(school);
-        }
-
-        public async Task<int> AddSchool(School school)
-        {
-            return await _schoolRepository.AddSchool(school);
         }
     }
 }

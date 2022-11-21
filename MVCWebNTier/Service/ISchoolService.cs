@@ -5,7 +5,7 @@ namespace Service
 {
     public interface ISchoolService
     {
-        Task<IEnumerable<School>> GetAllPeople();
+        Task<IEnumerable<School>> GetAllSchools();
         Task<int> AddSchool(School school);
 
         Task<School> GetSchoolByID(string id);
