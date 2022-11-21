@@ -13,6 +13,10 @@ namespace MVCWebNTier.Data.Context
         public DbSet<School> Schools { get; set; }
         public DbSet<Student> Students { get; set; }
 
+        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
