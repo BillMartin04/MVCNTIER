@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCWebNTier.Models;
+using MVCWebNTier.ViewModel.NewFolder;
 using Service;
 
 namespace MVCWebNTier.Controllers
@@ -15,11 +17,25 @@ namespace MVCWebNTier.Controllers
         // GET: Schools
 
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _schoolService.GetAllSchools());
+            var listOfSchools = _schoolService.GetAllSchools();
+            return View(ConvertToSchoolViewModel(listOfSchools));
         }
 
+        private IEnumerable<SchoolViewModel> ConvertToSchoolViewModel(Task<IEnumerable<School>> listOfSchools)
+        {
+            var schools = new List<SchoolViewModel>();
+   
+            foreach (var school in listOfSchools.Result)
+            {        
+                var schoolViewModel = new SchoolViewModel();
+                schoolViewModel.SchoolName = school.SchoolName;
+                schoolViewModel.SchoolID = school.SchoolID;
+                schools.Add(schoolViewModel);
+            }
+            return schools;
+        }
 
         // GET: Schools/Details/5
         public ActionResult Details(int id)
