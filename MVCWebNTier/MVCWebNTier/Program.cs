@@ -27,6 +27,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddTransient<ISchoolRepository, SchoolRepository>();
 builder.Services.AddTransient<ISchoolService, SchoolService>();
 builder.Services.AddTransient<ISchoolValidator, SchoolValidator>();

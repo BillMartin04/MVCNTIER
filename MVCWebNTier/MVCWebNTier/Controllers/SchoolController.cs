@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCWebNTier.Models;
-using MVCWebNTier.ViewModel.NewFolder;
+using MVCWebNTier.ViewModel.School;
 using Service;
 
 namespace MVCWebNTier.Controllers
@@ -17,30 +17,26 @@ namespace MVCWebNTier.Controllers
         // GET: Schools
 
 
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var listOfSchools = _schoolService.GetAllSchools();
+            var listOfSchools = await _schoolService.GetAllSchools();
             return View(ConvertToSchoolViewModel(listOfSchools));
         }
 
-        private IEnumerable<SchoolViewModel> ConvertToSchoolViewModel(Task<IEnumerable<School>> listOfSchools)
+        // GET: Schools/Details/5
+        public async Task<ActionResult> Details(int id)
         {
-            var schools = new List<SchoolViewModel>();
-   
-            foreach (var school in listOfSchools.Result)
-            {        
-                var schoolViewModel = new SchoolViewModel();
-                schoolViewModel.SchoolName = school.SchoolName;
-                schoolViewModel.SchoolID = school.SchoolID;
-                schools.Add(schoolViewModel);
-            }
-            return schools;
+            var school =  await _schoolService.GetSchoolByID(id.ToString());
+            return View(ConvertToSchoolDetailsViewModel(school));
         }
 
-        // GET: Schools/Details/5
-        public ActionResult Details(int id)
+        private SchoolViewModel ConvertToSchoolDetailsViewModel(School school)
         {
-            return View();
+            return new SchoolViewModel()
+            {
+                SchoolID = school.SchoolID,
+                SchoolName = school.SchoolName
+            };
         }
 
         // GET: Schools/Create
@@ -52,16 +48,10 @@ namespace MVCWebNTier.Controllers
         // POST: Schools/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(School school)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _schoolService.CreateSchool(school);
+            return View("Index", ConvertToSchoolViewModel( await _schoolService.GetAllSchools()));
         }
 
         // GET: Schools/Edit/5
@@ -104,6 +94,22 @@ namespace MVCWebNTier.Controllers
             {
                 return View();
             }
+        }
+
+
+
+        private IEnumerable<SchoolViewModel> ConvertToSchoolViewModel(IEnumerable<School> listOfSchools)
+        {
+            var schools = new List<SchoolViewModel>();
+
+            foreach (var school in listOfSchools)
+            {
+                var schoolViewModel = new SchoolViewModel();
+                schoolViewModel.SchoolName = school.SchoolName;
+                schoolViewModel.SchoolID = school.SchoolID;
+                schools.Add(schoolViewModel);
+            }
+            return schools;
         }
     }
 }

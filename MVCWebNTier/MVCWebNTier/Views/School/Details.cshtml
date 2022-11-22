@@ -1,4 +1,4 @@
-﻿@model MVCWebNTier.ViewModel.NewFolder.StudentViewModel
+﻿@model MVCWebNTier.ViewModel.School.SchoolViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -8,20 +8,19 @@
 <h1>Details</h1>
 
 <div>
-    <h4>StudentViewModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentID)
+            @Html.DisplayNameFor(model => model.SchoolID)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentID)
+            @Html.DisplayFor(model => model.SchoolID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentName)
+            @Html.DisplayNameFor(model => model.SchoolName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentName)
+            @Html.DisplayFor(model => model.SchoolName)
         </dd>
     </dl>
 </div>

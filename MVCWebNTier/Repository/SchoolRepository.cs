@@ -1,23 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVCWebNTier.Data.Context;
 using MVCWebNTier.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
     public class SchoolRepository : ISchoolRepository
     {
         private readonly SchoolContext _context;
-        public SchoolRepository(SchoolContext context)
+        public SchoolRepository(SchoolContext context) 
         {
             _context = context;
         }
 
-        public async Task<int> AddSchool(School school)
+        public async Task<int> AddSchool(School school) 
         {
             _context.Add(school);
             return await _context.SaveChangesAsync();

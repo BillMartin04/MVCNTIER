@@ -1,6 +1,6 @@
 ﻿using MVCWebNTier.Models;
 
-namespace MVCWebNTier.ViewModel.NewFolder
+namespace MVCWebNTier.ViewModel.School
 {
     public class SchoolViewModel
     {

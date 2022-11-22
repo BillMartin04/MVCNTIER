@@ -1,0 +1,39 @@
+﻿@model MVCWebNTier.ViewModel.School.SchoolViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form class="row" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="SchoolID" class="form-label"></label>
+                        <input asp-for="SchoolID" type="text" class="form-control" />
+                        <span asp-validation-for="SchoolID" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="SchoolName" class="form-label"></label>
+                        <input asp-for="SchoolName" type="text" class="form-control" />
+                        <span asp-validation-for="SchoolName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-end" />
+                        <a class="btn btn-outline-secondary" asp-action="Index"> Show All</a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

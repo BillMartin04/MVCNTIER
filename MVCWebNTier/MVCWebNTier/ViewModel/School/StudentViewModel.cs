@@ -1,4 +1,4 @@
-﻿namespace MVCWebNTier.ViewModel.NewFolder
+﻿namespace MVCWebNTier.ViewModel.School
 {
     public class StudentViewModel
     {
