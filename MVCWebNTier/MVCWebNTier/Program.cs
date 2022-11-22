@@ -3,6 +3,8 @@ using MVCWebNTier.Data.Context;
 using Repository;
 using Service;
 using Validators;
+using Microsoft.AspNetCore.Identity;
+using MVCWebNTier.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,13 @@ builder.Services.AddDbContext<SchoolContext>(options =>
     {
         sqlOptions.EnableRetryOnFailure();
     }));
-//  ?? throw new InvalidOperationException("Connection string 'MyFirstMVCAppContext' not found.")););
+
+
+builder.Services.AddDbContext<MVCWebNTierIdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCWebNTierIdentityContextConnection")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<MVCWebNTierIdentityContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -46,6 +54,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
@@ -53,4 +62,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
